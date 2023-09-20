@@ -2034,7 +2034,6 @@ void LoadModelIntoTab(WindowTab* tab) {
     }
     tab->canvasRc = win->canvasRc;
 
-    win->showSelection = tab->selectionOnPage != nullptr;
     if (win->uiaProvider) {
         win->uiaProvider->OnSelectionChanged();
     }
@@ -4064,7 +4063,7 @@ static void OnFrameKeyEsc(MainWindow* win) {
         RemoveNotificationsForGroup(win->hwndCanvas, kNotifGroupCursorPos);
         return;
     }
-    if (win->showSelection) {
+    if (win->IsShowingSelection()) {
         ClearSearchResult(win);
         return;
     }
@@ -4138,7 +4137,7 @@ Annotation* MakeAnnotationsFromSelection(WindowTab* tab, AnnotationType annotTyp
     auto engine = dm->GetEngine();
     bool supportsAnnots = EngineSupportsAnnotations(engine);
     MainWindow* win = tab->win;
-    bool ok = supportsAnnots && win->showSelection && tab->selectionOnPage;
+    bool ok = supportsAnnots && win->IsShowingSelection();
     if (!ok) {
         return nullptr;
     }

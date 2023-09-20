@@ -515,7 +515,7 @@ static void OnMouseLeftButtonUp(MainWindow* win, int x, int y, WPARAM key) {
         StopMouseDrag(win, x, y, !didDragMouse);
     } else {
         OnSelectionStop(win, x, y, !didDragMouse);
-        if (MouseAction::Selecting == ma && win->showSelection) {
+        if (MouseAction::Selecting == ma && win->IsShowingSelection()) {
             win->selectionMeasure = dm->CvtFromScreen(win->selectionRect).Size();
         }
     }
@@ -553,7 +553,6 @@ static void OnMouseLeftButtonUp(MainWindow* win, int x, int y, WPARAM key) {
         if ((kindDestinationLaunchURL == kind || kindDestinationLaunchFile == kind)) {
             DeleteOldSelectionInfo(win, true);
             tab->selectionOnPage = SelectionOnPage::FromRectangle(dm, dm->CvtToScreen(pageNo, link->GetRect()));
-            win->showSelection = tab->selectionOnPage != nullptr;
             RepaintAsync(win, 0);
         }
         SetCursorCached(IDC_ARROW);
@@ -562,7 +561,7 @@ static void OnMouseLeftButtonUp(MainWindow* win, int x, int y, WPARAM key) {
         return;
     }
 
-    if (win->showSelection) {
+    if (win->IsShowingSelection()) {
         /* if we had a selection and this was just a click, hide the selection */
         ClearSearchResult(win);
         return;
@@ -631,7 +630,6 @@ static void OnMouseLeftButtonDblClk(MainWindow* win, int x, int y, WPARAM key) {
 
         DeleteOldSelectionInfo(win, true);
         win->CurrentTab()->selectionOnPage = SelectionOnPage::FromRectangle(dm, rc);
-        win->showSelection = win->CurrentTab()->selectionOnPage != nullptr;
         RepaintAsync(win, 0);
     }
 }
@@ -1000,7 +998,7 @@ static void DrawDocument(MainWindow* win, HDC hdc, RECT* rcArea) {
     WindowTab* tab = win->CurrentTab();
     PaintCurrentEditAnnotationMark(tab, hdc, dm);
 
-    if (win->showSelection) {
+    if (win->IsShowingSelection()) {
         PaintSelection(win, hdc);
     }
 

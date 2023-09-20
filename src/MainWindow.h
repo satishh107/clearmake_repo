@@ -167,8 +167,6 @@ struct MainWindow {
     int xScrollSpeed = 0;
     int yScrollSpeed = 0;
 
-    // true while selecting and when CurrentTab()->selectionOnPage != nullptr
-    bool showSelection = false;
     // selection rectangle in screen coordinates (only needed while selecting)
     Rect selectionRect;
     // size of the current rectangular selection in document units
@@ -244,6 +242,7 @@ struct MainWindow {
 
     void ShowToolTip(const char* text, Rect& rc, bool multiline = false) const;
     void DeleteToolTip() const;
+    bool IsShowingSelection() const;
 
     bool CreateUIAProvider();
 };

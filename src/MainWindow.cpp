@@ -358,6 +358,18 @@ void MainWindow::DeleteToolTip() const {
     infotip->Delete();
 }
 
+// true while selecting and when CurrentTab()->selectionOnPage != nullptr
+bool MainWindow::IsShowingSelection() const {
+    if (mouseAction == MouseAction::Selecting || mouseAction == MouseAction::SelectingText) {
+        return true;
+    }
+    WindowTab* tab = CurrentTab();
+    if (tab) {
+        return tab->selectionOnPage != nullptr;
+    }
+    return false;
+}
+
 bool MainWindow::CreateUIAProvider() {
     if (uiaProvider) {
         return true;

@@ -1094,7 +1094,7 @@ void FillBuildMenuCtx(WindowTab* tab, BuildMenuCtx* ctx, Point pt) {
         }
         ctx->annotationUnderCursor = dm->GetAnnotationAtPos(pt, nullptr);
     }
-    ctx->hasSelection = tab->win->showSelection && tab->selectionOnPage;
+    ctx->hasSelection = tab->win->IsShowingSelection();
 }
 
 static void AppendSelectionHandlersToMenu(HMENU m, bool isEnabled) {
@@ -1461,7 +1461,7 @@ static bool IsFileCloseMenuEnabled() {
 }
 
 static void SetMenuStateForSelection(WindowTab* tab, HMENU menu) {
-    bool isTextSelected = tab && tab->win && tab->win->showSelection && tab->selectionOnPage;
+    bool isTextSelected = tab && tab->win->IsShowingSelection();
     for (int id : disableIfNoSelection) {
         MenuSetEnabled(menu, id, isTextSelected);
     }
