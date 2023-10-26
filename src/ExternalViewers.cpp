@@ -321,7 +321,7 @@ bool CanViewWithKnownExternalViewer(WindowTab* tab, int cmd) {
         if (ev->engineKind != nullptr) {
             if (ev->engineKind != engineKind) {
                 //logfa("CanViewWithKnownExternalViewer cmd: %d, ev->engineKind '%s' != engineKind '%s'\n", cmd,
-                      ev->engineKind, engineKind);
+                //      ev->engineKind, engineKind);
                 return false;
             }
         }
