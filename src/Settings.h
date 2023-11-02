@@ -654,7 +654,7 @@ static const StructInfo gFILETIMEInfo = {sizeof(FILETIME), 2, gFILETIMEFields, "
 
 static const FieldInfo gGlobalPrefsFields[] = {
     {(size_t)-1, SettingType::Comment,
-     (intptr_t) "For documentation, see https://www.sumatrapdfreader.org/settings/settings3-5-1.html"},
+     (intptr_t) "For documentation, see https://www.sumatrapdfreader.org/settings/settings3-5-3.html"},
     {offsetof(GlobalPrefs, theme), SettingType::String, (intptr_t) ""},
     {offsetof(GlobalPrefs, fixedPageUI), SettingType::Struct, (intptr_t)&gFixedPageUIInfo},
     {offsetof(GlobalPrefs, comicBookUI), SettingType::Struct, (intptr_t)&gComicBookUIInfo},
@@ -683,7 +683,7 @@ static const FieldInfo gGlobalPrefsFields[] = {
     {offsetof(GlobalPrefs, defaultZoom), SettingType::String, (intptr_t) "fit page"},
     {offsetof(GlobalPrefs, shortcuts), SettingType::Array, (intptr_t)&gShortcutInfo},
     {offsetof(GlobalPrefs, escToExit), SettingType::Bool, false},
-    {offsetof(GlobalPrefs, reuseInstance), SettingType::Bool, false},
+    {offsetof(GlobalPrefs, reuseInstance), SettingType::Bool, true},
     {offsetof(GlobalPrefs, reloadModifiedDocuments), SettingType::Bool, true},
     {(size_t)-1, SettingType::Comment, 0},
     {offsetof(GlobalPrefs, mainWindowBackground), SettingType::Color, (intptr_t) "#80fff200"},
