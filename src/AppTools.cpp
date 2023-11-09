@@ -146,7 +146,7 @@ char* AppGenDataFilenameTemp(const char* fileName) {
 static TextEditor editorRules[] = {
     {
         "Code.exe",
-        R"(--goto %f:%l)",
+        R"(--goto "%f:%l")",
         RegType::BinaryPath,
         kRegCurrentVer "\\Uninstall\\{771FD6B0-FA20-440A-A002-3B3BAC16DC50}_is1",
         // TODO: change back to Code.exe
